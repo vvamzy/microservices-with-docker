@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservices
+  labels:
+    name: microservices
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: munich
@@ -15,7 +22,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: munich
-  namespace: micro-services
+  namespace: microservices
   labels:
     name: munich
 spec:
