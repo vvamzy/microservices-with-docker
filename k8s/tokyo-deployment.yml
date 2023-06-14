@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservices
+  labels:
+    name: microservices
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: tokyo
@@ -11,14 +18,20 @@ spec:
    - port: 3000
      targetPort: 3000
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tokyo
+  namespace: microservices
   labels:
     name: tokyo
 spec:
-  replicas: 3
+  selector:
+    matchLabels:
+      name: tokyo
+  replicas: 1
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -26,4 +39,4 @@ spec:
     spec:
       containers:
         - name: tokyo
-          image: zkan/tokyo:latest
+          image: vvamzy/tokyo
