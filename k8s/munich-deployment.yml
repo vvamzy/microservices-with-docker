@@ -11,14 +11,20 @@ spec:
    - port: 8000
      targetPort: 8000
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: munich
+  namespace: micro-services
   labels:
     name: munich
 spec:
-  replicas: 2
+  selector:
+    matchLabels:
+      name: munich
+  replicas: 1
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -26,4 +32,7 @@ spec:
     spec:
       containers:
         - name: munich
-          image: zkan/munich:latest
+          image: vvamzy/munich
+          ports:
+            - containerPort: 8000
+              protocol: TCP
