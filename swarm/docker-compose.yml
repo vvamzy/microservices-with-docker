@@ -2,35 +2,35 @@ version: '3.1'
 
 services:
   bangkok:
-    image: zkan/bangkok:latest
+    image: vvamzy/bangkok:latest
     deploy:
       replicas: 2
     networks:
       - swarm101
 
   munich:
-    image: zkan/munich:latest
+    image: vvamzy/munich:latest
     deploy:
       replicas: 2
     networks:
       - swarm101
 
   tokyo:
-    image: zkan/tokyo:latest
+    image: vvamzy/tokyo:latest
     deploy:
       replicas: 1
     networks:
       - swarm101
 
   nyc:
-    image: zkan/nyc:latest
+    image: vvamzy/nyc:latest
     deploy:
       replicas: 1
     networks:
       - swarm101
 
   front_gateway:
-    image: zkan/front_gateway:latest
+    image: vvamzy/front_gateway:latest
     deploy:
       replicas: 1
     ports:
