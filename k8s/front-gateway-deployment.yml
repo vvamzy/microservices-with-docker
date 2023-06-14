@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: frontend
+  labels:
+    name: frontend
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: front-gateway
@@ -15,14 +22,20 @@ spec:
      protocol: TCP
      nodePort: 32500
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-gateway
+  namespace: frontend
   labels:
     name: front-gateway
 spec:
+  selector:
+    matchLabels:
+      name: front-gateway
   replicas: 1
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -30,7 +43,7 @@ spec:
     spec:
       containers:
         - name: front-gateway
-          image: zkan/front_gateway:latest
+          image: vvamzy/front_gateway
           ports:
             - containerPort: 8000
               protocol: TCP
