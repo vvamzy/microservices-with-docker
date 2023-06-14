@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: micro-services
+  labels:
+    name: micro-services
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: bangkok
@@ -11,14 +18,20 @@ spec:
    - port: 8000
      targetPort: 8000
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bangkok
+  namespace: micro-services
   labels:
     name: bangkok
 spec:
+  selector:
+    matchLabels:
+      name: bangkok
   replicas: 1
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -26,7 +39,7 @@ spec:
     spec:
       containers:
         - name: bangkok
-          image: zkan/bangkok:latest
+          image: vvamzy/front_gateway
           ports:
             - containerPort: 8000
               protocol: TCP
