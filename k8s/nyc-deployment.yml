@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservices
+  labels:
+    name: microservices
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: nyc
@@ -11,14 +18,20 @@ spec:
    - port: 9292
      targetPort: 9292
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nyc
+  namespace: microservices
   labels:
     name: nyc
 spec:
+  selector:
+    matchLabels:
+      name: nyc
   replicas: 1
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -26,4 +39,4 @@ spec:
     spec:
       containers:
         - name: nyc
-          image: zkan/nyc:latest
+          image: vvamzy/nyc
