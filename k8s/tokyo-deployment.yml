@@ -22,7 +22,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tokyo
-  namespace: microservices
+  namespace: ms-backend
   labels:
     name: tokyo
 spec:
