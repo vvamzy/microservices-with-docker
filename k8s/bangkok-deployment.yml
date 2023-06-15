@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: ms-backend
   labels:
-    name: micro-services
+    name: ms-backend
 ---
 apiVersion: v1
 kind: Service
