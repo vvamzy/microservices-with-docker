@@ -22,7 +22,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: munich
-  namespace: microservices
+  namespace: ms-backend
   labels:
     name: munich
 spec:
