@@ -22,7 +22,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nyc
-  namespace: microservices
+  namespace: ms-backend
   labels:
     name: nyc
 spec:
