@@ -26,7 +26,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-gateway
-  namespace: frontend
+  namespace: ms-frontend
   labels:
     name: front-gateway
 spec:
