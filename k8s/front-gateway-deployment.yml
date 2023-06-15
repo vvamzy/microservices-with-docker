@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: frontend
+  name: ms-frontend
   labels:
-    name: frontend
+    name: ms-frontend
 ---
 apiVersion: v1
 kind: Service
